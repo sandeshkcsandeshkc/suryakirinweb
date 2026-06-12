@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Surya Kiran Renewable Energy — Architects of Infrastructure</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════════════════ */
+:root {
+  --parchment:    #F7F3ED;
+  --parchment-2:  #EDE7DC;
+  --slate:        #1A1F2E;
+  --slate-mid:    #252B3B;
+  --brass:        #C9A84C;
+  --brass-light:  #DFC278;
+  --brass-dim:    rgba(201,168,76,0.18);
+  --stone:        #8C7B6B;
+  --forest:       #0C1510;
+  --forest-mid:   #111D17;
+  --cream-text:   #F2EBE0;
+  --cream-dim:    rgba(242,235,224,0.6);
+
+  --f-display: 'Fraunces', Georgia, serif;
+  --f-body:    'EB Garamond', Georgia, serif;
+  --f-util:    'Space Grotesk', system-ui, sans-serif;
+
+  --max-w: 1280px;
+  --gutter: clamp(1.5rem, 5vw, 5rem);
+  --section-py: clamp(6rem, 12vw, 11rem);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--parchment);
+  color: var(--slate);
+  font-family: var(--f-body);
+  font-size: clamp(1rem, 1.05vw, 1.1rem);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Paper grain fixed overlay */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img  { display: block; max-width: 100%; }
+a    { color: inherit; text-decoration: none; }
+ul   { list-style: none; }
+
+/* ═══════════════════════════════════════════════════════════
+   LAYOUT UTILITIES
+═══════════════════════════════════════════════════════════ */
+.container {
+  max-width: var(--max-w);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section { padding-block: var(--section-py); }
+.section-light  { background: var(--parchment); }
+.section-cream  { background: var(--parchment-2); }
+.section-dark   { background: var(--slate); }
+.section-forest { background: var(--forest); }
+
+/* ═══════════════════════════════════════════════════════════
+   TYPOGRAPHY COMPONENTS
+═══════════════════════════════════════════════════════════ */
+.eyebrow {
+  display: block;
+  font-family: var(--f-util);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 1.4rem;
+}
+
+.section-heading {
+  font-family: var(--f-display);
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.75rem;
+}
+.section-heading em { font-style: italic; color: var(--brass); }
+
+.section-body {
+  font-size: clamp(1rem, 1.1vw, 1.1rem);
+  line-height: 1.8;
+  max-width: 58ch;
+  color: var(--stone);
+  font-style: italic;
+}
+
+.on-dark .eyebrow   { color: var(--brass); }
+.on-dark .section-heading { color: var(--cream-text); }
+.on-dark .section-body  { color: var(--cream-dim); }
+
+/* Brass ruled underline that draws in on scroll */
+.ruled-heading { position: relative; display: inline-block; }
+.ruled-heading svg.rule-line {
+  position: absolute; bottom: -7px; left: 0;
+  width: 100%; height: 2px; overflow: visible;
+}
+.ruled-heading svg.rule-line line {
+  stroke: var(--brass); stroke-width: 1.5;
+  stroke-dasharray: 1500; stroke-dashoffset: 1500;
+  transition: stroke-dashoffset 0s;
+}
+.ruled-heading.animate-rule svg.rule-line line {
+  transition: stroke-dashoffset 1.1s cubic-bezier(0.4,0,0.2,1);
+  stroke-dashoffset: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.25,0.46,0.45,0.94),
+              transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.22s; }
+.reveal-d3 { transition-delay: 0.36s; }
+.reveal-d4 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════════════ */
+.btn {
+  display: inline-block;
+  font-family: var(--f-util);
+  font-size: 0.72rem; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 1rem 2.25rem;
+  border: 1px solid var(--brass);
+  cursor: pointer;
+  transition: background 0.28s, color 0.28s, border-color 0.28s;
+  white-space: nowrap;
+}
+.btn-brass  { background: var(--brass); color: var(--forest); }
+.btn-brass:hover { background: var(--brass-light); border-color: var(--brass-light); }
+.btn-ghost  { background: transparent; color: var(--brass); }
+.btn-ghost:hover { background: var(--brass); color: var(--forest); }
+.btn-ghost-light { background: transparent; color: rgba(201,168,76,0.75); border-color: rgba(201,168,76,0.4); }
+.btn-ghost-light:hover { background: var(--brass); color: var(--forest); border-color: var(--brass); }
+
+/* ═══════════════════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════════════════ */
+#main-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem var(--gutter);
+  transition: background 0.45s, padding 0.35s, box-shadow 0.45s;
+}
+#main-nav.scrolled {
+  background: rgba(247,243,237,0.96);
+  backdrop-filter: blur(12px);
+  padding-top: 1rem; padding-bottom: 1rem;
+  box-shadow: 0 1px 0 rgba(201,168,76,0.18);
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+.nav-brand-logo {
+  height: 46px;
+  width: auto;
+  flex-shrink: 0;
+  /* Mix-blend-mode punches out the black background on any bg colour */
+  mix-blend-mode: lighten;
+  transition: transform 0.35s cubic-bezier(0.25,0.46,0.45,0.94),
+              filter 0.35s;
+  filter: drop-shadow(0 1px 6px rgba(201,168,76,0.25));
+}
+/* Once nav is scrolled (parchment bg), switch blend mode so logo sits cleanly */
+#main-nav.scrolled .nav-brand-logo {
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.12));
+}
+.nav-brand:hover .nav-brand-logo {
+  transform: scale(1.06);
+  filter: drop-shadow(0 2px 10px rgba(201,168,76,0.45));
+}
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nav-brand-name {
+  font-family: var(--f-display);
+  font-size: 1rem; font-weight: 500;
+  color: var(--cream-text);
+  letter-spacing: 0.01em;
+  transition: color 0.35s;
+}
+#main-nav.scrolled .nav-brand-name { color: var(--slate); }
+.nav-brand-sub {
+  font-family: var(--f-util);
+  font-size: 0.57rem; font-weight: 400;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,168,76,0.65);
+  transition: color 0.35s;
+}
+#main-nav.scrolled .nav-brand-sub { color: var(--stone); }
+
+.nav-links {
+  display: flex; gap: 2.75rem;
+}
+.nav-links a {
+  font-family: var(--f-util);
+  font-size: 0.7rem; font-weight: 400;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(242,235,224,0.55);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--brass); }
+#main-nav.scrolled .nav-links a { color: var(--stone); }
+#main-nav.scrolled .nav-links a:hover { color: var(--brass); }
+
+.nav-enquire {
+  font-family: var(--f-util);
+  font-size: 0.68rem; font-weight: 500;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 0.65rem 1.6rem;
+  border: 1px solid rgba(201,168,76,0.5);
+  color: var(--brass);
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+}
+.nav-enquire:hover { background: var(--brass); color: var(--forest); border-color: var(--brass); }
+#main-nav.scrolled .nav-enquire { border-color: var(--brass); }
+
+@media (max-width: 900px) { .nav-links { display: none; } }
+
+/* ═══════════════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════════════ */
+#hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding-bottom: clamp(5rem, 9vh, 8rem);
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=1800&q=80&auto=format&fit=crop');
+  background-size: cover; background-position: center 40%;
+  transform: scale(1.05);
+  animation: heroZoom 18s ease-out forwards;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1.0); }
+}
+/* Layered gradient: dark vignette + brand-tinted base */
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to top, rgba(10,18,12,0.96) 0%, rgba(10,18,12,0.55) 45%, rgba(10,18,12,0.2) 100%),
+    linear-gradient(110deg, rgba(10,18,12,0.5) 0%, transparent 60%);
+}
+
+/* Blueprint grid on top */
+.hero-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.055) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+
+/* Topographic lines */
+.hero-topo {
+  position: absolute; inset: 0; pointer-events: none;
+  opacity: 0.09;
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+}
+
+.hero-kicker {
+  font-family: var(--f-util);
+  font-size: 0.67rem; font-weight: 400;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--brass);
+  display: flex; align-items: center; gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+.hero-kicker::before {
+  content: '';
+  display: inline-block; width: 2.5rem; height: 1px;
+  background: var(--brass); flex-shrink: 0;
+}
+
+.hero-headline {
+  font-family: var(--f-display);
+  font-size: clamp(4rem, 10vw, 9.5rem);
+  font-weight: 300; line-height: 0.93;
+  letter-spacing: -0.025em; color: var(--cream-text);
+  margin-bottom: 2.5rem;
+}
+.hero-headline em { font-style: italic; color: var(--brass-light); }
+
+.hero-subhead {
+  font-family: var(--f-body);
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  line-height: 1.7; font-style: italic;
+  color: rgba(242,235,224,0.6);
+  max-width: 54ch;
+  margin-bottom: 3.25rem;
+}
+
+.hero-ctas { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+
+/* Scroll cue */
+.hero-scroll-cue {
+  position: absolute; right: var(--gutter); bottom: 3.5rem; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+  font-family: var(--f-util); font-size: 0.58rem;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,168,76,0.4);
+}
+.scroll-track {
+  width: 1px; height: 3.5rem;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.6), transparent);
+  animation: scrollTrack 2.5s ease-in-out infinite;
+}
+@keyframes scrollTrack {
+  0%,100% { opacity: 0.3; transform: scaleY(0.7) translateY(-4px); }
+  50% { opacity: 0.9; transform: scaleY(1) translateY(0); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   STATS BAND
+═══════════════════════════════════════════════════════════ */
+#stats-band {
+  background: var(--slate);
+  padding-block: 4rem;
+  border-top: 1px solid rgba(201,168,76,0.12);
+  border-bottom: 1px solid rgba(201,168,76,0.12);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat-item {
+  padding: 1rem 2.5rem;
+  border-right: 1px solid rgba(201,168,76,0.12);
+  display: flex; flex-direction: column; gap: 0.4rem;
+}
+.stat-item:first-child { padding-left: 0; }
+.stat-item:last-child  { border-right: none; }
+.stat-number {
+  font-family: var(--f-display);
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 300; color: var(--brass);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stat-label {
+  font-family: var(--f-util);
+  font-size: 0.65rem; font-weight: 400;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(242,235,224,0.4);
+}
+@media (max-width: 700px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { border-bottom: 1px solid rgba(201,168,76,0.12); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .stat-item:nth-child(3),
+  .stat-item:nth-child(4) { border-bottom: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   CONSULTANCY SECTION
+═══════════════════════════════════════════════════════════ */
+#consultancy {
+  position: relative; overflow: hidden;
+  background: var(--parchment);
+}
+
+/* Topographic contour texture — right side */
+#consultancy .topo-texture {
+  position: absolute;
+  top: 0; right: -5%; width: 50%; height: 100%;
+  pointer-events: none; opacity: 0.07;
+}
+
+.consultancy-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(3rem, 6vw, 8rem);
+  align-items: start;
+}
+.consultancy-intro { position: sticky; top: 8rem; }
+.consultancy-intro .section-body { margin-bottom: 2.5rem; }
+
+/* Two image-cards stacked */
+.consultancy-cards { display: flex; flex-direction: column; gap: 2rem; }
+
+.img-card {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--brass-dim);
+  background: var(--slate-mid);
+  cursor: default;
+}
+.img-card-photo {
+  width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; position: relative;
+}
+.img-card-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform 0.85s cubic-bezier(0.25,0.46,0.45,0.94),
+              filter 0.85s ease;
+  filter: brightness(0.88) saturate(0.8);
+}
+.img-card:hover .img-card-photo img {
+  transform: scale(1.06);
+  filter: brightness(0.95) saturate(0.9);
+}
+/* Brass top border reveal on hover */
+.img-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--brass);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  z-index: 3;
+}
+.img-card:hover::before { transform: scaleX(1); }
+
+.img-card-body {
+  padding: 2rem 2.25rem 2.25rem;
+  background: var(--parchment);
+  border-top: 1px solid var(--brass-dim);
+}
+.img-card-num {
+  font-family: var(--f-display);
+  font-size: 0.85rem; font-weight: 300;
+  color: var(--brass); opacity: 0.6;
+  margin-bottom: 0.6rem;
+}
+.img-card-title {
+  font-family: var(--f-display);
+  font-size: 1.25rem; font-weight: 400;
+  color: var(--slate); margin-bottom: 0.75rem;
+  line-height: 1.25;
+}
+.img-card-desc {
+  font-size: 0.95rem; line-height: 1.75;
+  color: var(--stone); font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .consultancy-layout { grid-template-columns: 1fr; }
+  .consultancy-intro  { position: static; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ENGINEERING SECTION
+═══════════════════════════════════════════════════════════ */
+#engineering {
+  background: var(--slate);
+  position: relative; overflow: hidden;
+}
+/* Subtle grid overlay */
+#engineering::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.eng-header {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(3rem, 6vw, 7rem);
+  align-items: end;
+  margin-bottom: clamp(4rem, 6vw, 6rem);
+}
+.eng-header-right {
+  display: flex; flex-direction: column;
+  justify-content: flex-end; gap: 2.5rem;
+  padding-bottom: 0.5rem;
+}
+.eng-philosophy {
+  font-family: var(--f-display);
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  font-style: italic; line-height: 1.65;
+  color: rgba(242,235,224,0.45);
+  border-left: 2px solid var(--brass-dim);
+  padding-left: 1.5rem;
+}
+
+/* Three image-cards in a row */
+.eng-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.eng-card {
+  position: relative; overflow: hidden;
+  background: var(--forest-mid);
+  border: 1px solid rgba(201,168,76,0.1);
+  display: flex; flex-direction: column;
+  transition: border-color 0.4s;
+}
+.eng-card:hover { border-color: rgba(201,168,76,0.45); }
+.eng-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--brass);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+  z-index: 3;
+}
+.eng-card:hover::before { transform: scaleX(1); }
+
+.eng-card-photo {
+  width: 100%; aspect-ratio: 4/3; overflow: hidden;
+}
+.eng-card-photo img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  filter: brightness(0.75) saturate(0.7);
+  transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94),
+              filter 0.9s ease;
+}
+.eng-card:hover .eng-card-photo img {
+  transform: scale(1.08);
+  filter: brightness(0.9) saturate(0.85);
+}
+
+.eng-card-body {
+  padding: 1.75rem 1.75rem 2rem;
+  flex: 1; display: flex; flex-direction: column; gap: 0.65rem;
+}
+.eng-card-num {
+  font-family: var(--f-display);
+  font-size: 0.78rem; font-weight: 300;
+  color: var(--brass); opacity: 0.55; line-height: 1;
+}
+.eng-card-title {
+  font-family: var(--f-display);
+  font-size: 1.15rem; font-weight: 400;
+  color: var(--cream-text); line-height: 1.2;
+}
+.eng-card-desc {
+  font-size: 0.9rem; line-height: 1.7;
+  color: rgba(242,235,224,0.45); font-style: italic;
+  flex: 1;
+}
+
+@media (max-width: 850px) {
+  .eng-header { grid-template-columns: 1fr; }
+  .eng-cards  { grid-template-columns: 1fr; }
+}
+@media (min-width: 851px) and (max-width: 1100px) {
+  .eng-cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ENERGY SECTION
+═══════════════════════════════════════════════════════════ */
+#energy {
+  background: var(--parchment-2);
+  position: relative; overflow: hidden;
+}
+
+.energy-header {
+  max-width: 700px;
+  margin-bottom: clamp(4rem, 6vw, 6.5rem);
+}
+
+/* Asymmetric bento grid */
+.energy-bento {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1.5rem;
+}
+.energy-bento-right {
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+
+.en-card {
+  position: relative; overflow: hidden;
+  background: var(--parchment);
+  border: 1px solid rgba(201,168,76,0.2);
+  display: flex; flex-direction: column;
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+.en-card:hover {
+  border-color: rgba(201,168,76,0.55);
+  box-shadow: 0 8px 40px rgba(201,168,76,0.08);
+}
+.en-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--brass);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.55s cubic-bezier(0.4,0,0.2,1);
+  z-index: 3;
+}
+.en-card:hover::after { transform: scaleX(1); }
+
+.en-card-photo {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.en-card-photo img {
+  width: 100%; height: 100%; min-height: 200px;
+  object-fit: cover; display: block;
+  filter: saturate(0.8) brightness(0.92);
+  transition: transform 0.9s cubic-bezier(0.25,0.46,0.45,0.94),
+              filter 0.9s ease;
+}
+.en-card:hover .en-card-photo img {
+  transform: scale(1.07);
+  filter: saturate(0.95) brightness(1);
+}
+.en-card-large .en-card-photo { aspect-ratio: 4/3; }
+.en-card-small .en-card-photo { aspect-ratio: 16/9; }
+
+.en-card-body {
+  padding: 1.75rem 2rem 2rem;
+}
+.en-card-title {
+  font-family: var(--f-display);
+  font-size: 1.15rem; font-weight: 400;
+  color: var(--slate); margin-bottom: 0.6rem; line-height: 1.2;
+}
+.en-card-desc {
+  font-size: 0.92rem; line-height: 1.75;
+  color: var(--stone); font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .energy-bento { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   COMMITMENT / LIFECYCLE
+═══════════════════════════════════════════════════════════ */
+#commitment {
+  background: var(--parchment);
+  position: relative;
+}
+
+.commitment-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: clamp(4rem, 7vw, 9rem);
+  align-items: start;
+}
+.commitment-intro .section-body { margin-bottom: 3rem; }
+
+/* Lifecycle steps */
+.lifecycle {
+  display: flex; flex-direction: column; gap: 0;
+  position: relative;
+}
+.lifecycle::before {
+  content: '';
+  position: absolute; left: 1.65rem; top: 3rem; bottom: 3rem; width: 1px;
+  background: linear-gradient(to bottom, var(--brass-dim), var(--brass), var(--brass-dim));
+}
+.lc-step {
+  display: flex; align-items: flex-start; gap: 2rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+  position: relative;
+}
+.lc-step:last-child { border-bottom: none; }
+
+.lc-num {
+  flex-shrink: 0;
+  width: 3.3rem; height: 3.3rem;
+  border: 1px solid var(--brass-dim);
+  display: flex; align-items: center; justify-content: center;
+  background: var(--parchment);
+  font-family: var(--f-display);
+  font-size: 1rem; font-weight: 300; color: var(--brass);
+  position: relative; z-index: 1;
+  transition: background 0.3s, border-color 0.3s;
+}
+.lc-step:hover .lc-num {
+  background: var(--brass);
+  color: var(--forest);
+  border-color: var(--brass);
+}
+.lc-content { padding-top: 0.35rem; }
+.lc-title {
+  font-family: var(--f-display);
+  font-size: 1.05rem; font-weight: 400; color: var(--slate);
+  margin-bottom: 0.3rem; line-height: 1.2;
+}
+.lc-desc {
+  font-size: 0.9rem; line-height: 1.65;
+  color: var(--stone); font-style: italic;
+}
+
+/* Trust markers */
+.trust-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin-top: 5rem; padding-top: 3.5rem;
+  border-top: 1px solid rgba(201,168,76,0.15);
+}
+.trust-item { display: flex; flex-direction: column; gap: 0.75rem; }
+.trust-rule {
+  width: 2.5rem; height: 1px; background: var(--brass);
+}
+.trust-text {
+  font-size: 0.95rem; line-height: 1.7;
+  color: var(--stone); font-style: italic;
+}
+
+@media (max-width: 850px) {
+  .commitment-layout { grid-template-columns: 1fr; }
+  .trust-row { grid-template-columns: 1fr; gap: 1.75rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FULL-BLEED IMAGE DIVIDER
+═══════════════════════════════════════════════════════════ */
+.img-divider {
+  position: relative; height: clamp(280px, 40vw, 520px); overflow: hidden;
+}
+.img-divider img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  filter: brightness(0.6) saturate(0.75);
+}
+.img-divider-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(10,18,12,0.7) 0%, rgba(10,18,12,0.2) 60%, transparent 100%);
+  display: flex; align-items: center;
+  padding-inline: var(--gutter);
+}
+.img-divider-quote {
+  max-width: 600px;
+}
+.img-divider-quote p {
+  font-family: var(--f-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 300; font-style: italic;
+  color: var(--cream-text); line-height: 1.25;
+  letter-spacing: -0.015em;
+}
+.img-divider-quote p em { color: var(--brass-light); }
+
+/* ═══════════════════════════════════════════════════════════
+   CTA BAND
+═══════════════════════════════════════════════════════════ */
+#cta-band {
+  background: var(--forest);
+  position: relative; overflow: hidden;
+}
+#cta-band::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.045) 1px, transparent 1px);
+  background-size: 70px 70px;
+}
+/* Background site image with overlay */
+.cta-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1497440001374-f26997328c1b?w=1600&q=70&auto=format&fit=crop');
+  background-size: cover; background-position: center;
+  opacity: 0.12;
+}
+.cta-content {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1.1fr 1fr;
+  gap: clamp(3rem, 6vw, 7rem); align-items: center;
+}
+.cta-left {}
+.cta-heading {
+  font-family: var(--f-display);
+  font-size: clamp(2.2rem, 4.5vw, 4rem);
+  font-weight: 300; line-height: 1.05;
+  letter-spacing: -0.02em; color: var(--cream-text);
+  margin-bottom: 1.75rem;
+}
+.cta-heading em { font-style: italic; color: var(--brass-light); }
+.cta-body {
+  font-size: clamp(1rem, 1.1vw, 1.05rem); line-height: 1.8;
+  color: var(--cream-dim); font-style: italic;
+  max-width: 52ch;
+  margin-bottom: 3rem;
+}
+.cta-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+.cta-right {
+  border-left: 1px solid rgba(201,168,76,0.12);
+  padding-left: clamp(2rem, 4vw, 5rem);
+}
+.cta-contact-label {
+  font-family: var(--f-util);
+  font-size: 0.63rem; font-weight: 500;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--brass); margin-bottom: 2rem;
+}
+.cta-contact-item {
+  margin-bottom: 1.5rem;
+}
+.cta-contact-key {
+  font-family: var(--f-util);
+  font-size: 0.62rem; font-weight: 400;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(242,235,224,0.3); margin-bottom: 0.35rem;
+}
+.cta-contact-val {
+  font-family: var(--f-display);
+  font-size: 1.05rem; font-weight: 300;
+  color: rgba(242,235,224,0.75); font-style: italic;
+}
+
+@media (max-width: 850px) {
+  .cta-content { grid-template-columns: 1fr; }
+  .cta-right { border-left: none; border-top: 1px solid rgba(201,168,76,0.12); padding-left: 0; padding-top: 3rem; }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════ */
+footer {
+  background: #070d09;
+  padding: 4rem var(--gutter) 3rem;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+.footer-inner {
+  max-width: var(--max-w); margin-inline: auto;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 3rem;
+}
+.footer-brand-name {
+  font-family: var(--f-display);
+  font-size: 1.05rem; font-weight: 400;
+  color: rgba(242,235,224,0.5); margin-bottom: 0.5rem;
+}
+.footer-brand-sub {
+  font-family: var(--f-util);
+  font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,168,76,0.3);
+}
+.footer-brand-desc {
+  font-size: 0.88rem; line-height: 1.7;
+  color: rgba(242,235,224,0.2); font-style: italic;
+  margin-top: 1.25rem; max-width: 36ch;
+}
+.footer-col-label {
+  font-family: var(--f-util);
+  font-size: 0.6rem; font-weight: 500;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(201,168,76,0.4); margin-bottom: 1.25rem;
+}
+.footer-links { display: flex; flex-direction: column; gap: 0.6rem; }
+.footer-links a {
+  font-family: var(--f-util);
+  font-size: 0.72rem; color: rgba(242,235,224,0.25);
+  transition: color 0.2s; letter-spacing: 0.04em;
+}
+.footer-links a:hover { color: var(--brass); }
+.footer-bottom {
+  max-width: var(--max-w); margin-inline: auto;
+  margin-top: 3.5rem; padding-top: 2rem;
+  border-top: 1px solid rgba(201,168,76,0.07);
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-copy {
+  font-family: var(--f-util);
+  font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase;
+  color: rgba(242,235,224,0.18);
+}
+@media (max-width: 750px) {
+  .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <a href="#" class="nav-brand">
+    <img src="C:\Users\AB\Desktop\website file\imgs\final logo.png" alt="Surya Kiran Renewable Energy Logo" class="nav-brand-logo"/>
+    <div class="nav-brand-text">
+      <span class="nav-brand-name">Surya Kiran Renewable Energy</span>
+      <span class="nav-brand-sub">Birendranagar · Karnali Province · Nepal</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#consultancy">Consultancy</a></li>
+    <li><a href="#engineering">Engineering</a></li>
+    <li><a href="#energy">Energy</a></li>
+    <li><a href="#commitment">Commitment</a></li>
+  </ul>
+  <a href="#cta-band" class="nav-enquire">Enquire</a>
+</nav>
+
+
+<!-- ═══ HERO ═══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+
+  <!-- Topographic SVG overlay -->
+  <svg class="hero-topo" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="1050" cy="480" rx="600" ry="400" fill="none" stroke="#C9A84C" stroke-width="1"/>
+    <ellipse cx="1050" cy="480" rx="480" ry="315" fill="none" stroke="#C9A84C" stroke-width="0.8"/>
+    <ellipse cx="1050" cy="480" rx="360" ry="235" fill="none" stroke="#C9A84C" stroke-width="0.8"/>
+    <ellipse cx="1050" cy="480" rx="255" ry="162" fill="none" stroke="#C9A84C" stroke-width="0.7"/>
+    <ellipse cx="1050" cy="480" rx="158" ry="98"  fill="none" stroke="#C9A84C" stroke-width="0.6"/>
+    <ellipse cx="1050" cy="480" rx="78"  ry="48"  fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+    <line x1="400" y1="0"   x2="1400" y2="900" stroke="#C9A84C" stroke-width="0.35"/>
+    <line x1="150" y1="0"   x2="1400" y2="750" stroke="#C9A84C" stroke-width="0.25"/>
+  </svg>
+
+  <div class="hero-content container">
+    <p class="hero-kicker reveal">Surya Kiran Renewable Energy Pvt. Ltd.</p>
+    <h1 class="hero-headline reveal reveal-d1">
+      Architects<br>of <em>Infrastructure</em>
+    </h1>
+    <p class="hero-subhead reveal reveal-d2">
+      We plan, design, build, and maintain the civil works, energy systems, and engineered solutions that underpin Nepal's growth — carried from first survey to final commissioning, and beyond.
+    </p>
+    <div class="hero-ctas reveal reveal-d3">
+      <a href="#cta-band" class="btn btn-brass">Request a Consultation</a>
+      <a href="#"         class="btn btn-ghost-light">View Capability Statement</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-cue">
+    <div class="scroll-track"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+
+<!-- ═══ STATS BAND ═════════════════════════════════════════ -->
+<div id="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <span class="stat-number">15+</span>
+        <span class="stat-label">Years of Practice</span>
+      </div>
+      <div class="stat-item reveal reveal-d1">
+        <span class="stat-number">200+</span>
+        <span class="stat-label">Projects Delivered</span>
+      </div>
+      <div class="stat-item reveal reveal-d2">
+        <span class="stat-number">7</span>
+        <span class="stat-label">Provinces Served</span>
+      </div>
+      <div class="stat-item reveal reveal-d3">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">In-House Delivery</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ CONSULTANCY ════════════════════════════════════════ -->
+<section id="consultancy" class="section section-light">
+
+  <!-- Topographic texture SVG -->
+  <svg class="topo-texture" viewBox="0 0 700 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <ellipse cx="350" cy="450" rx="320" ry="380" fill="none" stroke="#C9A84C" stroke-width="1"/>
+    <ellipse cx="350" cy="450" rx="255" ry="300" fill="none" stroke="#C9A84C" stroke-width="0.9"/>
+    <ellipse cx="350" cy="450" rx="190" ry="225" fill="none" stroke="#C9A84C" stroke-width="0.8"/>
+    <ellipse cx="350" cy="450" rx="128" ry="155" fill="none" stroke="#C9A84C" stroke-width="0.7"/>
+    <ellipse cx="350" cy="450" rx="72"  ry="88"  fill="none" stroke="#C9A84C" stroke-width="0.6"/>
+    <ellipse cx="350" cy="450" rx="30"  ry="36"  fill="none" stroke="#C9A84C" stroke-width="0.5"/>
+    <line x1="0"   y1="450" x2="700" y2="450" stroke="#C9A84C" stroke-width="0.4"/>
+    <line x1="350" y1="0"   x2="350" y2="900" stroke="#C9A84C" stroke-width="0.4"/>
+  </svg>
+
+  <div class="container">
+    <div class="consultancy-layout">
+
+      <!-- Sticky intro -->
+      <div class="consultancy-intro">
+        <span class="eyebrow reveal">Strategic Consultancy</span>
+        <h2 class="section-heading reveal reveal-d1">
+          <span class="ruled-heading">The Blueprint<br>Before<br>the <em>Build</em>
+            <svg class="rule-line" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="1" x2="100" y2="1" vector-effect="non-scaling-stroke"/></svg>
+          </span>
+        </h2>
+        <p class="section-body reveal reveal-d2">
+          Every sound investment begins with sound information. We produce the technical and financial documentation that governments, lenders, and donors require before a single machine breaks ground — giving decision-makers the clarity to commit with confidence.
+        </p>
+        <a href="#cta-band" class="btn btn-ghost reveal reveal-d3" style="margin-top:0.5rem;">Commission a Study</a>
+      </div>
+
+      <!-- Cards -->
+      <div class="consultancy-cards">
+
+        <div class="img-card reveal reveal-d1">
+          <div class="img-card-photo">
+            <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=900&q=80&auto=format&fit=crop"
+                 alt="Engineer reviewing detailed project blueprints" loading="lazy"/>
+          </div>
+          <div class="img-card-body">
+            <div class="img-card-num">01</div>
+            <h3 class="img-card-title">Detailed Project Reports (DPR)</h3>
+            <p class="img-card-desc">Topographic survey, full engineering design, cost estimation, environmental and social assessment, and implementation scheduling — compiled to approval-ready standards for government and institutional submission.</p>
+          </div>
+        </div>
+
+        <div class="img-card reveal reveal-d2">
+          <div class="img-card-photo">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=900&q=80&auto=format&fit=crop"
+                 alt="Financial and technical feasibility analysis" loading="lazy"/>
+          </div>
+          <div class="img-card-body">
+            <div class="img-card-num">02</div>
+            <h3 class="img-card-title">Feasibility &amp; Valuation Studies</h3>
+            <p class="img-card-desc">Independent, data-led assessment of technical viability, financial return, and project risk — the due diligence layer that protects every stakeholder before ground is broken.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ ENGINEERING ════════════════════════════════════════ -->
+<section id="engineering" class="section section-dark">
+  <div class="container">
+
+    <div class="eng-header">
+      <div>
+        <span class="eyebrow on-dark reveal">Engineering &amp; Construction</span>
+        <h2 class="section-heading on-dark reveal reveal-d1">
+          <span class="ruled-heading">One Firm.<br>One <em>Mandate</em>.
+            <svg class="rule-line" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="1" x2="100" y2="1" vector-effect="non-scaling-stroke"/></svg>
+          </span>
+        </h2>
+      </div>
+      <div class="eng-header-right reveal reveal-d2">
+        <p class="eng-philosophy">
+          "We carry the work from first survey to final handover under a single accountable roof — because divided responsibility is where quality is lost."
+        </p>
+        <a href="#cta-band" class="btn btn-brass" style="align-self:flex-start;">Discuss a Project</a>
+      </div>
+    </div>
+
+    <div class="eng-cards">
+
+      <div class="eng-card reveal reveal-d1">
+        <div class="eng-card-photo">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80&auto=format&fit=crop"
+               alt="Bridge construction in mountainous terrain" loading="lazy"/>
+        </div>
+        <div class="eng-card-body">
+          <div class="eng-card-num">01</div>
+          <h3 class="eng-card-title">Roads &amp; Bridges</h3>
+          <p class="eng-card-desc">Alignment surveys, structural design, and full construction supervision for durable connectivity across Karnali Province's demanding terrain — rural routes through to load-rated bridges.</p>
+        </div>
+      </div>
+
+      <div class="eng-card reveal reveal-d2">
+        <div class="eng-card-photo">
+          <img src="https://images.unsplash.com/photo-1548407260-da850faa41e3?w=800&q=80&auto=format&fit=crop"
+               alt="Water pipeline and supply infrastructure" loading="lazy"/>
+        </div>
+        <div class="eng-card-body">
+          <div class="eng-card-num">02</div>
+          <h3 class="eng-card-title">Water Supply Systems</h3>
+          <p class="eng-card-desc">Source hydrological assessment, distribution network engineering, and turnkey execution for community gravity schemes and municipal reticulation — from intake to tap.</p>
+        </div>
+      </div>
+
+      <div class="eng-card reveal reveal-d3">
+        <div class="eng-card-photo">
+          <img src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800&q=80&auto=format&fit=crop"
+               alt="Civil construction and structural works" loading="lazy"/>
+        </div>
+        <div class="eng-card-body">
+          <div class="eng-card-num">03</div>
+          <h3 class="eng-card-title">Structural &amp; Civil Works</h3>
+          <p class="eng-card-desc">Foundation to finish — retaining structures, institutional buildings, and general civil works executed with in-house quality control at every stage of the build programme.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FULL-BLEED DIVIDER ════════════════════════════════ -->
+<div class="img-divider">
+  <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1800&q=75&auto=format&fit=crop"
+       alt="Panoramic solar field at golden hour" loading="lazy"/>
+  <div class="img-divider-overlay">
+    <div class="img-divider-quote reveal">
+      <p>We engineer for <em>the decades ahead</em> — not the contract in hand.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ ENERGY ═════════════════════════════════════════════ -->
+<section id="energy" class="section section-cream">
+  <div class="container">
+
+    <div class="energy-header">
+      <span class="eyebrow reveal">Renewable Energy Solutions</span>
+      <h2 class="section-heading reveal reveal-d1">
+        <span class="ruled-heading">Designed for the<br><em>Long Horizon</em>
+          <svg class="rule-line" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="1" x2="100" y2="1" vector-effect="non-scaling-stroke"/></svg>
+        </span>
+      </h2>
+      <p class="section-body reveal reveal-d2">
+        Solar energy is only as good as the engineering behind it. We size systems to genuine load, specify for longevity over cost, and remain on call long after commissioning — because a system that fails in year three was never truly built.
+      </p>
+    </div>
+
+    <!-- Asymmetric bento -->
+    <div class="energy-bento">
+
+      <!-- Large left card -->
+      <div class="en-card en-card-large reveal reveal-d1">
+        <div class="en-card-photo">
+          <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1000&q=80&auto=format&fit=crop"
+               alt="Large-scale solar rooftop installation" loading="lazy"/>
+        </div>
+        <div class="en-card-body">
+          <h3 class="en-card-title">Solar Rooftop Systems</h3>
+          <p class="en-card-desc">Custom load-analysis and system design for residential, institutional, and industrial premises. Every installation is engineered, not templated — from shading analysis through inverter selection to warranty-backed commissioning.</p>
+        </div>
+      </div>
+
+      <!-- Right column: two stacked small cards -->
+      <div class="energy-bento-right">
+
+        <div class="en-card en-card-small reveal reveal-d2">
+          <div class="en-card-photo">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80&auto=format&fit=crop"
+                 alt="Solar water pumping system in agricultural field" loading="lazy"/>
+          </div>
+          <div class="en-card-body">
+            <h3 class="en-card-title">Solar Water Pumping</h3>
+            <p class="en-card-desc">Variable-frequency drive and direct-coupled pumping systems engineered for mountain hydrology — reliable, low-maintenance water access for agriculture and remote communities.</p>
+          </div>
+        </div>
+
+        <div class="en-card en-card-small reveal reveal-d3">
+          <div class="en-card-photo">
+            <img src="https://images.unsplash.com/photo-1565514020179-026b92b2d70b?w=800&q=80&auto=format&fit=crop"
+                 alt="Metal fabrication workshop for solar mounting structures" loading="lazy"/>
+          </div>
+          <div class="en-card-body">
+            <h3 class="en-card-title">System Manufacturing</h3>
+            <p class="en-card-desc">In-house fabrication of galvanised mounting structures and balance-of-system components. Built to specification, climate-tested, and ready to install — removing the supply-chain uncertainty from every project.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="margin-top:3.5rem;" class="reveal">
+      <a href="#cta-band" class="btn btn-ghost">Explore Energy Solutions</a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ COMMITMENT ═════════════════════════════════════════ -->
+<section id="commitment" class="section section-light">
+  <div class="container">
+
+    <div class="commitment-layout">
+
+      <div class="commitment-intro">
+        <span class="eyebrow reveal">Client Commitment</span>
+        <h2 class="section-heading reveal reveal-d1">
+          <span class="ruled-heading">What We<br><em>Stand Behind</em>
+            <svg class="rule-line" viewBox="0 0 100 2" preserveAspectRatio="none" aria-hidden="true"><line x1="0" y1="1" x2="100" y2="1" vector-effect="non-scaling-stroke"/></svg>
+          </span>
+        </h2>
+        <p class="section-body reveal reveal-d2">
+          Our relationship with a client does not end at handover. Scheduled maintenance, performance monitoring, and a responsive local presence in Birendranagar mean that what we build continues to perform — quietly, reliably, for the long term. Transparency in reporting and adherence to government procurement standards are not differentiators to us; they are the baseline.
+        </p>
+      </div>
+
+      <!-- Lifecycle -->
+      <div class="lifecycle reveal reveal-d1">
+        <div class="lc-step">
+          <div class="lc-num">01</div>
+          <div class="lc-content">
+            <div class="lc-title">Survey &amp; Investigation</div>
+            <div class="lc-desc">Topographic, hydrological, and geotechnical data gathered on-site by our own teams.</div>
+          </div>
+        </div>
+        <div class="lc-step">
+          <div class="lc-num">02</div>
+          <div class="lc-content">
+            <div class="lc-title">Design &amp; DPR</div>
+            <div class="lc-desc">Engineering drawings, specifications, and documentation prepared for approval submission.</div>
+          </div>
+        </div>
+        <div class="lc-step">
+          <div class="lc-num">03</div>
+          <div class="lc-content">
+            <div class="lc-title">Construction</div>
+            <div class="lc-desc">In-house execution with structured QA protocols and site supervision at every stage.</div>
+          </div>
+        </div>
+        <div class="lc-step">
+          <div class="lc-num">04</div>
+          <div class="lc-content">
+            <div class="lc-title">Commissioning &amp; Handover</div>
+            <div class="lc-desc">System testing, client induction, and formal completion documentation.</div>
+          </div>
+        </div>
+        <div class="lc-step">
+          <div class="lc-num">05</div>
+          <div class="lc-content">
+            <div class="lc-title">Maintenance &amp; Support</div>
+            <div class="lc-desc">Scheduled servicing and responsive local support from our Birendranagar base.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Trust markers -->
+    <div class="trust-row">
+      <div class="trust-item reveal reveal-d1">
+        <div class="trust-rule"></div>
+        <p class="trust-text">Full project lifecycle under one accountable team — no handoffs, no gaps in responsibility.</p>
+      </div>
+      <div class="trust-item reveal reveal-d2">
+        <div class="trust-rule"></div>
+        <p class="trust-text">Compliance with national procurement and engineering standards as a minimum, not a differentiator.</p>
+      </div>
+      <div class="trust-item reveal reveal-d3">
+        <div class="trust-rule"></div>
+        <p class="trust-text">Local presence in Karnali Province with the capacity and reach for regional deployment.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══ CTA BAND ═══════════════════════════════════════════ -->
+<section id="cta-band" class="section section-forest">
+  <div class="cta-bg" aria-hidden="true"></div>
+  <div class="container">
+    <div class="cta-content">
+
+      <div class="cta-left">
+        <span class="eyebrow reveal" style="color:var(--brass);">For Government &amp; Institutional Partners</span>
+        <h2 class="cta-heading reveal reveal-d1">
+          Partner With Us<br>on <em>What Comes Next</em>
+        </h2>
+        <p class="cta-body reveal reveal-d2">
+          We welcome enquiries from government bodies, development agencies, and corporate clients seeking a technically accountable partner for infrastructure, energy, or consultancy mandates.
+        </p>
+        <div class="cta-actions reveal reveal-d3">
+          <a href="mailto:info@suryakiran.com.np" class="btn btn-brass">Submit a Tender Enquiry</a>
+          <a href="#" class="btn btn-ghost">Capability Statement</a>
+        </div>
+      </div>
+
+      <div class="cta-right reveal reveal-d2">
+        <div class="cta-contact-label">Get In Touch</div>
+        <div class="cta-contact-item">
+          <div class="cta-contact-key">Office</div>
+          <div class="cta-contact-val">Birendranagar, Surkhet<br>Karnali Province, Nepal</div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="cta-contact-key">Email</div>
+          <div class="cta-contact-val">info@suryakiran.com.np</div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="cta-contact-key">Registration</div>
+          <div class="cta-contact-val">Pvt. Ltd. · Karnali Province</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand-name">Surya Kiran Renewable Energy Pvt. Ltd.</div>
+      <div class="footer-brand-sub">Birendranagar · Karnali Province · Nepal</div>
+      <p class="footer-brand-desc">Planning, designing, building, and maintaining the infrastructure and energy systems that power Nepal's future.</p>
+    </div>
+    <div>
+      <div class="footer-col-label">Services</div>
+      <div class="footer-links">
+        <a href="#consultancy">Strategic Consultancy</a>
+        <a href="#engineering">Engineering &amp; Construction</a>
+        <a href="#energy">Renewable Energy</a>
+        <a href="#commitment">Client Commitment</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-label">Contact</div>
+      <div class="footer-links">
+        <a href="mailto:info@suryakiran.com.np">info@suryakiran.com.np</a>
+        <a href="#cta-band">Submit a Tender Enquiry</a>
+        <a href="#">Capability Statement</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2025 Surya Kiran Renewable Energy Pvt. Ltd. All rights reserved.</span>
+    <span class="footer-copy">Architects of Infrastructure</span>
+  </div>
+</footer>
+
+
+<script>
+(function() {
+  'use strict';
+
+  /* ── NAV scroll behaviour ─────────────────────────────── */
+  const nav = document.getElementById('main-nav');
+  function updateNav() {
+    nav.classList.toggle('scrolled', window.scrollY > 70);
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  /* ── Scroll-reveal (fade-up) ─────────────────────────── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => {
+    // Hero elements fire immediately on load
+    if (el.closest('#hero')) {
+      setTimeout(() => el.classList.add('visible'), 120);
+    } else {
+      revealObs.observe(el);
+    }
+  });
+
+  /* ── Brass rule draw-in ──────────────────────────────── */
+  const ruleEls = document.querySelectorAll('.ruled-heading');
+  const ruleObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('animate-rule'), 520);
+        ruleObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.55 });
+  ruleEls.forEach(el => ruleObs.observe(el));
+
+  /* ── Reduced-motion: disable all transitions ─────────── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach(el => {
+      el.style.cssText = 'opacity:1;transform:none;transition:none';
+    });
+    document.querySelectorAll('.ruled-heading svg.rule-line line').forEach(l => {
+      l.style.cssText = 'stroke-dashoffset:0;transition:none';
+    });
+    const bg = document.querySelector('.hero-bg');
+    if (bg) bg.style.animation = 'none';
+  }
+
+})();
+</script>
+</body>
+</html>
