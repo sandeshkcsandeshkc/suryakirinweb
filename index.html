@@ -281,8 +281,8 @@ ul   { list-style: none; }
 .hero-overlay {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to top, rgba(10,18,12,0.96) 0%, rgba(10,18,12,0.55) 45%, rgba(10,18,12,0.2) 100%),
-    linear-gradient(110deg, rgba(10,18,12,0.5) 0%, transparent 60%);
+    linear-gradient(to top, rgba(10,18,12,0.98) 0%, rgba(10,18,12,0.72) 38%, rgba(10,18,12,0.25) 100%),
+    linear-gradient(110deg, rgba(10,18,12,0.65) 0%, transparent 60%);
 }
 
 /* Blueprint grid on top */
@@ -311,6 +311,7 @@ ul   { list-style: none; }
   color: var(--brass);
   display: flex; align-items: center; gap: 1rem;
   margin-bottom: 2.25rem;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.33);
 }
 .hero-kicker::before {
   content: '';
@@ -324,6 +325,7 @@ ul   { list-style: none; }
   font-weight: 300; line-height: 0.93;
   letter-spacing: -0.025em; color: var(--cream-text);
   margin-bottom: 2.5rem;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.35);
 }
 .hero-headline em { font-style: italic; color: var(--brass-light); }
 
@@ -331,7 +333,8 @@ ul   { list-style: none; }
   font-family: var(--f-body);
   font-size: clamp(1rem, 1.3vw, 1.2rem);
   line-height: 1.7; font-style: italic;
-  color: rgba(242,235,224,0.6);
+  color: rgba(242,235,224,0.75);
+  text-shadow: 0 1px 10px rgba(0,0,0,0.25);
   max-width: 54ch;
   margin-bottom: 3.25rem;
 }
@@ -363,6 +366,11 @@ ul   { list-style: none; }
   }
   .hero-content {
     padding-top: clamp(4rem, 9vw, 6rem);
+    max-width: 44rem;
+    background: rgba(8, 12, 10, 0.28);
+    backdrop-filter: blur(10px);
+    border-radius: 2rem;
+    padding: clamp(2rem, 4vw, 3rem);
   }
   .hero-headline {
     font-size: clamp(3rem, 9vw, 7rem);
@@ -397,6 +405,9 @@ ul   { list-style: none; }
   }
   .hero-content {
     padding-top: 3rem;
+    background: rgba(8, 12, 10, 0.42);
+    padding: 1.8rem 1.4rem 2.2rem;
+    margin-inline: 0.75rem;
   }
   .hero-scroll-cue {
     left: 50%; right: auto;
@@ -967,7 +978,7 @@ footer {
 <!-- ═══ NAV ═══════════════════════════════════════════════ -->
 <nav id="main-nav">
   <a href="#" class="nav-brand">
-    <img src="C:\Users\AB\Desktop\website file\imgs\final logo.png" alt="Surya Kiran Renewable Energy Logo" class="nav-brand-logo"/>
+    <img src="./imgs/final logo.png" alt="Surya Kiran Renewable Energy Logo" class="nav-brand-logo"/>
     <div class="nav-brand-text">
       <span class="nav-brand-name">Surya Kiran Renewable Energy</span>
       <span class="nav-brand-sub">Birendranagar · Karnali Province · Nepal</span>
