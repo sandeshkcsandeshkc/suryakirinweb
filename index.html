@@ -910,6 +910,14 @@ ul   { list-style: none; }
   color: rgba(242,235,224,0.75); font-style: italic;
 }
 
+.social-link {
+  color: var(--brass);
+  transition: color 0.25s;
+}
+.social-link:hover {
+  color: var(--brass-light);
+}
+
 @media (max-width: 850px) {
   .cta-content { grid-template-columns: 1fr; }
   .cta-right { border-left: none; border-top: 1px solid rgba(201,168,76,0.12); padding-left: 0; padding-top: 3rem; }
@@ -971,6 +979,18 @@ footer {
 @media (max-width: 750px) {
   .footer-inner { grid-template-columns: 1fr; gap: 2.5rem; }
 }
+
+/* ═══════════════════════════════════════════════════════════
+   FREE TENDER FORM STYLING
+═══════════════════════════════════════════════════════════ */
+.tender-form { background: var(--forest-mid); padding: 2rem; border: 1px solid rgba(201,168,76,0.15); margin-top: 2rem; max-width: 500px; }
+.form-group { margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-family: var(--f-util); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-light); }
+.form-group input[type="text"], .form-group input[type="email"], .form-group textarea { background: rgba(247,243,237,0.05); border: 1px solid rgba(201,168,76,0.25); padding: 0.75rem 1rem; color: var(--cream-text); font-family: var(--f-body); font-size: 1rem; transition: border-color 0.3s, background 0.3s; }
+.form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--brass); background: rgba(247,243,237,0.08); }
+.form-group input[type="file"] { font-family: var(--f-util); font-size: 0.7rem; color: var(--cream-dim); margin-top: 0.25rem; }
+.form-group input[type="file"]::file-selector-button { background: transparent; border: 1px solid var(--brass); color: var(--brass); padding: 0.4rem 0.8rem; font-size: 0.65rem; letter-spacing: 0.05em; text-transform: uppercase; cursor: pointer; margin-right: 1rem; transition: background 0.2s, color 0.2s; }
+.form-group input[type="file"]::file-selector-button:hover { background: var(--brass); color: var(--forest); }
 </style>
 </head>
 <body>
@@ -1357,12 +1377,30 @@ footer {
           Partner With Us<br>on <em>What Comes Next</em>
         </h2>
         <p class="cta-body reveal reveal-d2">
-          We welcome enquiries from government bodies, development agencies, and corporate clients seeking a technically accountable partner for infrastructure, energy, or consultancy mandates.
+          We welcome enquiries from government bodies, development agencies, and corporate clients seeking a technically accountable partner.
         </p>
-        <div class="cta-actions reveal reveal-d3">
-          <a href="mailto:info@suryakiran.com.np" class="btn btn-brass">Submit a Tender Enquiry</a>
-          <a href="#" class="btn btn-ghost">Capability Statement</a>
-        </div>
+        <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" class="tender-form reveal reveal-d3">
+          <input type="hidden" name="access_key" value="YOUR_FREE_ACCESS_KEY_HERE">
+          <input type="hidden" name="subject" value="New Tender Enquiry - Surya Kiran">
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+          <div class="form-group">
+            <label for="client-name">Organization / Client Name</label>
+            <input type="text" id="client-name" name="organization" required placeholder="e.g., Department of Roads, Karnali">
+          </div>
+          <div class="form-group">
+            <label for="client-email">Email Address</label>
+            <input type="email" id="client-email" name="email" required placeholder="name@domain.com">
+          </div>
+          <div class="form-group">
+            <label for="project-scope">Project Scope & Details</label>
+            <textarea id="project-scope" name="details" rows="4" required placeholder="Briefly describe the civil works, energy system, or study required..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="tender-file">Upload RFP / Tender Documents (Optional)</label>
+            <input type="file" id="tender-file" name="attachment" accept=".pdf,.doc,.docx,.zip">
+          </div>
+          <button type="submit" class="btn btn-brass" style="width: 100%; margin-top: 1rem;">Submit Tender Enquiry</button>
+        </form>
       </div>
 
       <div class="cta-right reveal reveal-d2">
@@ -1378,6 +1416,10 @@ footer {
         <div class="cta-contact-item">
           <div class="cta-contact-key">Registration</div>
           <div class="cta-contact-val">Pvt. Ltd. · Karnali Province</div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="cta-contact-key">Follow Us</div>
+          <div class="cta-contact-val"><a href="https://www.facebook.com/suryakiranenergy" target="_blank" rel="noopener noreferrer" class="social-link">Facebook</a></div>
         </div>
       </div>
 
