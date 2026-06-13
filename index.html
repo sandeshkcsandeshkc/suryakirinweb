@@ -1379,8 +1379,15 @@ footer {
         <p class="cta-body reveal reveal-d2">
           We welcome enquiries from government bodies, development agencies, and corporate clients seeking a technically accountable partner.
         </p>
+        <div id="success-message" style="display: none; background: var(--forest-mid); padding: 3rem 2rem; border: 1px solid var(--brass); margin-top: 2rem; max-width: 500px; text-align: center;">
+          <span class="eyebrow" style="color:var(--brass); margin-bottom: 1rem; display:block;">Submission Successful</span>
+          <h3 style="font-family: var(--f-display); font-size: 1.75rem; color: var(--cream-text); font-weight: 300; margin-bottom: 1rem; font-style: italic;">Thank You</h3>
+          <p style="font-family: var(--f-body); color: var(--cream-dim); font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem;">Our engineering team has securely received your tender documents. We will review the specifications and respond to your organization within 48 business hours.</p>
+          <button onclick="window.location.reload();" class="btn btn-ghost-light" style="padding: 0.5rem 1.5rem; font-size: 0.65rem;">Submit Another Enquiry</button>
+        </div>
         <form action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data" class="tender-form reveal reveal-d3">
-          <input type="hidden" name="access_key" value="YOUR_FREE_ACCESS_KEY_HERE">
+          <input type="hidden" name="access_key" value="a58a3acb-04a6-4b47-ad54-4b0a236ae2cc">
+          <input type="hidden" name="redirect" value="#success-message">
           <input type="hidden" name="subject" value="New Tender Enquiry - Surya Kiran">
           <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
           <div class="form-group">
@@ -1515,6 +1522,26 @@ footer {
     });
     const bg = document.querySelector('.hero-bg');
     if (bg) bg.style.animation = 'none';
+  }
+
+  // Tender form: loading state and success redirect handling
+  const form = document.querySelector('.tender-form');
+  const successMessage = document.getElementById('success-message');
+  if (form && successMessage) {
+    // If the page is loaded with the success hash, show success message
+    if (window.location.hash === '#success-message') {
+      form.style.display = 'none';
+      successMessage.style.display = 'block';
+    }
+    form.addEventListener('submit', function() {
+      const btn = form.querySelector('button[type="submit"]');
+      if (btn) {
+        btn.disabled = true;
+        btn.innerText = "Uploading Documents & Submitting...";
+        btn.style.opacity = "0.7";
+        btn.style.cursor = "not-allowed";
+      }
+    });
   }
 
 })();
