@@ -189,7 +189,7 @@ ul   { list-style: none; }
   padding: 1rem 0;
 }
 .nav-container {
-  max-width: 1400px;
+  max-width: 1480px;
   margin: 0 auto;
   padding: 0 2rem;
   display: flex;
@@ -198,25 +198,40 @@ ul   { list-style: none; }
 }
 .nav-brand {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.75rem;
   text-decoration: none;
+}
+.nav-brand-logo {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: lighten;
+  transition: filter 0.3s;
+}
+.nav-brand-text {
+  display: flex;
+  flex-direction: column;
 }
 .brand-geo {
   font-family: var(--f-display);
-  font-size: 1.25rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   color: var(--cream-text);
   line-height: 1.1;
+  transition: color 0.3s;
 }
 .brand-sub {
   font-family: var(--f-util);
-  font-size: 0.65rem;
+  font-size: 0.55rem;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.15em;
   color: var(--brass);
   margin-top: 0.2rem;
+  transition: color 0.3s;
 }
 .nav-links {
   display: flex;
@@ -316,7 +331,7 @@ ul   { list-style: none; }
 #hero {
   position: relative; min-height: 100vh;
   display: flex; flex-direction: column; justify-content: flex-end;
-  padding-bottom: clamp(5rem, 9vh, 8rem);
+  padding-bottom: clamp(7rem, 10vh, 10rem);
   overflow: hidden;
 }
 
@@ -375,7 +390,7 @@ ul   { list-style: none; }
 
 .hero-headline {
   font-family: var(--f-display);
-  font-size: clamp(4rem, 10vw, 9.5rem);
+  font-size: clamp(3.8rem, 9.5vw, 8.2rem);
   font-weight: 300; line-height: 0.93;
   letter-spacing: -0.025em; color: var(--cream-text);
   margin-bottom: 2.5rem;
@@ -480,6 +495,7 @@ ul   { list-style: none; }
 ═══════════════════════════════════════════════════════════ */
 #stats-band {
   background: var(--slate);
+  margin-top: 2.5rem;
   padding-block: 4rem;
   border-top: 1px solid rgba(201,168,76,0.12);
   border-bottom: 1px solid rgba(201,168,76,0.12);
@@ -974,6 +990,22 @@ ul   { list-style: none; }
 .social-link {
   color: var(--brass);
   transition: color 0.25s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+/* Accessibility Focus States */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 4px;
+}
+
+.social-icon {
+  display: inline-block;
+  width: 18px;
+  height: auto;
+  object-fit: contain;
 }
 .social-link:hover {
   color: var(--brass-light);
@@ -1069,8 +1101,11 @@ footer {
 <nav id="main-nav" aria-label="Main Navigation">
   <div class="nav-container">
     <a href="#" class="nav-brand">
-      <span class="brand-geo">SURYA KIRAN</span>
-      <span class="brand-sub">Renewable Energy</span>
+      <img src="./imgs/final logo.png" alt="Surya Kiran Renewable Energy Logo" class="nav-brand-logo"/>
+      <div class="nav-brand-text">
+        <span class="brand-geo">SURYA KIRAN</span>
+        <span class="brand-sub">Renewable Energy</span>
+      </div>
     </a>
 
     <button class="mobile-menu-toggle" aria-label="Toggle Menu" aria-expanded="false">
@@ -1095,6 +1130,7 @@ footer {
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-grid"></div>
+  <div class="hero-nav-protector" style="position: absolute; top: 0; left: 0; width: 100%; height: 180px; background: linear-gradient(to bottom, rgba(10,18,12,0.85) 0%, transparent 100%); z-index: 1; pointer-events: none;"></div>
 
   <!-- Topographic SVG overlay -->
   <svg class="hero-topo" viewBox="0 0 1400 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -1111,7 +1147,7 @@ footer {
   <div class="hero-content container">
     <p class="hero-kicker reveal">Surya Kiran Renewable Energy Pvt. Ltd.</p>
     <h1 class="hero-headline reveal reveal-d1">
-      Architects<br>of <em>Infrastructure</em>
+      Natural Energy,<br>Heavy <em>Engineering</em>
     </h1>
     <p class="hero-subhead reveal reveal-d2">
       We plan, design, build, and maintain the civil works, energy systems, and engineered solutions that underpin Nepal's growth — carried from first survey to final commissioning, and beyond.
@@ -1499,7 +1535,7 @@ footer {
         </div>
         <div class="cta-contact-item">
           <div class="cta-contact-key">Email</div>
-          <div class="cta-contact-val"><a href="mailto:info@suryakiran.com.np">info@suryakiran.com.np</a></div>
+          <div class="cta-contact-val"><a href="mailto:suryakiranenergy3@gmail.com">suryakiranenergy3@gmail.com</a></div>
         </div>
         <div class="cta-contact-item">
           <div class="cta-contact-key">Registration</div>
@@ -1507,7 +1543,22 @@ footer {
         </div>
         <div class="cta-contact-item">
           <div class="cta-contact-key">Follow Us</div>
-          <div class="cta-contact-val"><a href="https://www.facebook.com/suryakiranenergy" target="_blank" rel="noopener noreferrer" class="social-link">Facebook</a></div>
+          <div class="cta-contact-val">
+            <a href="https://www.facebook.com/suryakiranenergy" target="_blank" rel="noopener noreferrer" class="social-link">
+              <img src="./imgs/icons8-facebook-logo-94.png" alt="Facebook" class="social-icon" />https://www.facebook.com/suryakiranenergy
+            </a>
+          </div>
+        </div>
+        <div class="cta-contact-item">
+          <div class="cta-contact-key">WhatsApp</div>
+          <div class="cta-contact-val">
+            <a href="https://wa.me/+9779848041272" target="_blank" rel="noopener noreferrer" class="social-link">
+              <img src="./imgs/Picture1.png" alt="WhatsApp" class="social-icon" />+977 9848041272
+            </a><br>
+            <a href="https://wa.me/+9779766209821" target="_blank" rel="noopener noreferrer" class="social-link">
+              <img src="./imgs/Picture1.png" alt="WhatsApp" class="social-icon" />+977 9766209821
+            </a>
+          </div>
         </div>
       </div>
 
@@ -1571,6 +1622,7 @@ footer {
       toggleBtn.setAttribute('aria-expanded', String(!isExpanded));
       toggleBtn.classList.toggle('active');
       navLinks.classList.toggle('active');
+      document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
     });
 
     document.querySelectorAll('.nav-links a').forEach(link => {
@@ -1578,6 +1630,7 @@ footer {
         toggleBtn.classList.remove('active');
         navLinks.classList.remove('active');
         toggleBtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
       });
     });
   }
